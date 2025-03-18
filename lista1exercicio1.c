@@ -9,6 +9,6 @@ int main()
     printf("2° Nota:");
     scanf("%f", &y);
 
-    printf("Média: %.2f \n", (x + x)/2);
+    printf("Média: %.2f \n", (x + y)/2);
     return 0;
 }
