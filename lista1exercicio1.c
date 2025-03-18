@@ -2,14 +2,13 @@
 
 int main()
 {
-    float notaA, notaB, media;
+    float x,y;
     
     printf("1° Nota:");
-    scanf("%f", &notaA);
+    scanf("%f", &x);
     printf("2° Nota:");
-    scanf("%f", &notaB);
+    scanf("%f", &y);
 
-    media = (notaA + notaB)/2;
-    printf("Média: %.2f \n", media);
+    printf("Média: %.2f \n", (x + x)/2);
     return 0;
 }
