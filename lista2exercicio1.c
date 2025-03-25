@@ -6,7 +6,7 @@ int main()
 {
     char palavra[20];
     printf("Digite uma palavra: ");
-    scanf("%19s", palavra); // Remove o operador & e limita para evitar overflow
+    scanf("%s", palavra); // Remove o operador & e limita para evitar overflow
 
     for (int i = 0; i < strlen(palavra); i++)
     {
