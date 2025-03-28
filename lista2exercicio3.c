@@ -11,8 +11,8 @@ int main()
     printf("Digite uma parte da palavra: ");
     scanf("%9s", &substring);
     
-    printf("Palavra: %s \n", palavra);
-    printf("Substring: %s \n", substring);
+    printf("Palavra digitada: %s \n", palavra);
+    printf("Substring digitada: %s \n", substring);
 
     int tamanhoPalavra = strlen(palavra);
     int tamanhoSub = strlen(substring);
