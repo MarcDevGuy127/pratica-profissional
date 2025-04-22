@@ -13,3 +13,5 @@ Descrição: Esse repositório armazena os arquivos e executáveis das listas de
 Nesta pasta estão armazenados os seguintes arquivos:
 
 `lista2exercicio7.c` até `lista2exercicio8.c` - São os arquivos responsáveis pelas resoluções dos exercícios 7 até 8 da lista Exercício 2.
+
+##**Observação:** _O arquivo `lista2exercicio8.c` possui todas as demais funções implementadas dos exercícios 8 até 10 da lista Exercício 2._
