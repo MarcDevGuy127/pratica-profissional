@@ -1,0 +1,8 @@
+# depslib dependency file v1.0
+1745801804 source:c:\users\marcelo silva\desktop\codeblocks_projetos\jogo_da_forca_oficial\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<ctype.h>
+	<time.h>
+
