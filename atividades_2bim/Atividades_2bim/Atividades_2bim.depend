@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1746572736 source:c:\users\marcelo silva\desktop\repositorio_git\pratica-profissional\atividades_2bim\atividades_2bim\main.c
+	<stdio.h>
+	<stdlib.h>
+
