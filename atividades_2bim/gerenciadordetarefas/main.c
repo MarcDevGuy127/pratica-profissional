@@ -1,6 +1,18 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+//caso Windows 32-bits ou Unix
+#ifdef _WIN32
+  #define CLEAR_CMD "cls"  // Comando para limpar tela no Windows
+#else
+  #define CLEAR_CMD "clear" // Comando para limpar tela em Unix-like
+#endif
+
+// Função que chama o sistema para limpar a tela
+void clearScreen() {
+    system(CLEAR_CMD);
+}
+
 void funcaoImprimirTela() {
     printf("\n============MENU============");
     printf("\n 1 - Adicionar Tarefa");
@@ -19,6 +31,8 @@ int main()
     int opcao;
     funcaoImprimirTela();
     scanf("%d", &opcao);
+
+    clearScreen();
 
     switch (opcao) {
         case 1:
