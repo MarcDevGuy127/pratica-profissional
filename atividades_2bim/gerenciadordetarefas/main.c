@@ -28,6 +28,33 @@ void funcaoImprimirTela() {
     return;
 }
 
+//void funcaoPopUp() {
+//    char opcaoPopup;
+//    int opcao;
+//
+//    printf("\n Voce tem certeza?");
+//    printf("\n S - Prosseguir");
+//    printf("\n N - Cancelar \n");
+//    scanf("%c",&opcaoPopup);
+//
+//    switch(opcaoPopup) {
+//    case 'S':
+//        funcaoImprimirTela();
+//        break;
+//
+//    case 'N':
+//        opcao = 1;
+//        //considerar opcao como 1 e reimprimir tela do case 1
+//        break;
+//    default:
+//        printf("Opcao invalida!\n");
+//        getchar();
+//        break;
+//    }
+//    getchar();
+//    return;
+//}
+
 int main()
 {
     FILE *arquivo;
@@ -50,15 +77,15 @@ int main()
             printf("Escreva a tarefa que voce deseja adicionar:\n");
             arquivo = fopen("arquivos/teste.txt", "w");
 
-            if (arquivo == NULL) {
-                printf("Erro ao abrir o arquivo!\n");
-                return 1;
-            }
-
             fgets(texto, sizeof(texto), stdin);
             fprintf(arquivo, "%s\n", texto);
+
+            //funcaoPopUp();//Exibe: Voce tem certeza?Sim ou nao.
+
             fclose(arquivo);
             getchar();
+
+            clearScreen();
             break;
         case 2:
             printf("Listando tarefas disponiveis:\n");
@@ -71,18 +98,24 @@ int main()
 
             fclose(arquivo); //Salvar alteracoes e fechar arquivo
             getchar();
+
+            clearScreen();
             break;
         case 3:
             printf("Digite a tarefa que deseja consultar:\n");
 
             fclose(arquivo);
             getchar();
+
+            clearScreen();
             break;
         case 4:
             printf("Ordenando as tarefas disponiveis:\n");
 
             fclose(arquivo);
             getchar();
+
+            clearScreen();
             break;
         case 5:
             printf("Exibindo tarefas disponiveis:\n");
@@ -94,10 +127,13 @@ int main()
             //printf(scanf("%c", &texto)); //deixar o texto placeholder da tarefa escolhida para editar na digitaçao
             fclose(arquivo);
             getchar();
+
+            clearScreen();
             break;
         default:
             printf("Opcao invalida!\n");
             getchar();
+            clearScreen();
             break;
     }
 }
