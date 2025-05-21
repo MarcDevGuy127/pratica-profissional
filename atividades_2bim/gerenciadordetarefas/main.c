@@ -30,30 +30,58 @@ void funcaoImprimirTela() {
 
 int main()
 {
+    FILE *arquivo;
+
+    if (arquivo == NULL) {
+        printf("Erro ao abrir o arquivo!\n");
+        return 1;
+    }
+
     int opcao;
     char texto[MAX_CHAR];
+    char linha[100]; //quantidade de linhas que irao ser lidas/impressas em teste.txt
     funcaoImprimirTela();
     scanf("%d", &opcao); //<-- adicionar testes de entrada
 
-    clearScreen(); //limpat tela
+    clearScreen(); //limpar tela
 
     switch (opcao) {
         case 1:
             printf("Escreva a tarefa que voce deseja adicionar:\n");
-            scanf("%c", &texto);
-            printf("A tarefa '%c' foi adicionada!", &texto);
+            arquivo = fopen("arquivos/teste.txt", "w");
+
+            if (arquivo == NULL) {
+                printf("Erro ao abrir o arquivo!\n");
+                return 1;
+            }
+
+            fgets(texto, sizeof(texto), stdin);
+            fprintf(arquivo, "%s\n", texto);
+            fclose(arquivo);
             getchar();
             break;
         case 2:
             printf("Listando tarefas disponiveis:\n");
+
+            arquivo = fopen("arquivos/teste.txt", "r");
+
+            while (fgets(linha, sizeof(linha), arquivo)) {
+                printf("%s", linha);
+            }
+
+            fclose(arquivo); //Salvar alteracoes e fechar arquivo
             getchar();
             break;
         case 3:
             printf("Digite a tarefa que deseja consultar:\n");
+
+            fclose(arquivo);
             getchar();
             break;
         case 4:
             printf("Ordenando as tarefas disponiveis:\n");
+
+            fclose(arquivo);
             getchar();
             break;
         case 5:
@@ -64,6 +92,7 @@ int main()
             printf("A seguinte tarefa foi selecionada para edicao:"); //ver se da para adicionar uma condicional igual o popup Voce tem certeza? S ou N
 
             //printf(scanf("%c", &texto)); //deixar o texto placeholder da tarefa escolhida para editar na digitaçao
+            fclose(arquivo);
             getchar();
             break;
         default:
