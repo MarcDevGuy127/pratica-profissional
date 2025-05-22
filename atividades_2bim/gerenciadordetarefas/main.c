@@ -58,6 +58,7 @@ void funcaoImprimirTela() {
 int main()
 {
     FILE *arquivo;
+    arquivo = fopen("arquivos/teste.txt", "r");
 
     if (arquivo == NULL) {
         printf("Erro ao abrir o arquivo!\n");
@@ -67,25 +68,38 @@ int main()
     int opcao;
     char texto[MAX_CHAR];
     char linha[100]; //quantidade de linhas que irao ser lidas/impressas em teste.txt
-    funcaoImprimirTela();
+
+    //while(opcao =! 8){}
+
+    funcaoImprimirTela(); //funcao para imprimir menu
     scanf("%d", &opcao); //<-- adicionar testes de entrada
 
+    if (opcao == "" || opcao == NULL || opcao >= 9 || opcao < 1) {
+        clearScreen();
+        printf("Opcao invalida!");
+        //getchar();
+    }
+
+    getchar();
     clearScreen(); //limpar tela
 
+    //while
     switch (opcao) {
         case 1:
             printf("Escreva a tarefa que voce deseja adicionar:\n");
             arquivo = fopen("arquivos/teste.txt", "w");
 
+            if (arquivo == NULL) {
+            printf("Erro ao abrir o arquivo!\n");
+            return 1;
+            }
+
             fgets(texto, sizeof(texto), stdin);
-            fprintf(arquivo, "%s\n", texto);
-
+            fprintf(arquivo, "%s", texto);
             //funcaoPopUp();//Exibe: Voce tem certeza?Sim ou nao.
-
             fclose(arquivo);
             getchar();
-
-            clearScreen();
+            //clearScreen();
             break;
         case 2:
             printf("Listando tarefas disponiveis:\n");
@@ -99,7 +113,7 @@ int main()
             fclose(arquivo); //Salvar alteracoes e fechar arquivo
             getchar();
 
-            clearScreen();
+            //clearScreen();
             break;
         case 3:
             printf("Digite a tarefa que deseja consultar:\n");
@@ -129,6 +143,36 @@ int main()
             getchar();
 
             clearScreen();
+            break;
+        case 6:
+            printf("Escolha uma tarefa para deletar!\n");
+            printf("Listando tarefas disponiveis:\n");
+
+            arquivo = fopen("arquivos/teste.txt", "r+");
+
+            if (arquivo == NULL) {
+            printf("Erro ao abrir o arquivo!\n");
+            return 1;
+            }
+
+            while (fgets(linha, sizeof(linha), arquivo)) {
+                printf("%s", linha);
+            }
+
+            fgets(texto, sizeof(texto), stdin);
+            fprintf(arquivo, "%s", texto);
+            //funcaoPopUp();//Exibe: Voce tem certeza?Sim ou nao.
+            fclose(arquivo);
+            getchar();
+            //clearScreen();
+
+            break;
+        case 7:
+            printf("imprimindo relatorio:\n");
+        case 8:
+            arquivo = fopen("arquivos/teste.txt", "r");
+            printf("Saindo do menu");
+            fclose(arquivo);
             break;
         default:
             printf("Opcao invalida!\n");
