@@ -1,5 +1,6 @@
 # depslib dependency file v1.0
-1747930752 source:c:\users\marcelo silva\desktop\repositorio_git\pratica-profissional\atividades_2bim\gerenciadordetarefas\main.c
+1748614257 source:c:\users\marcelo silva\desktop\repositorio_git\pratica-profissional\atividades_2bim\gerenciadordetarefas\main.c
 	<stdio.h>
 	<stdlib.h>
+	<string.h>
 
