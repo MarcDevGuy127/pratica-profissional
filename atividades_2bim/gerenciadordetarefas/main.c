@@ -11,7 +11,7 @@
 
 #define MAX_CHAR 120 //Limitando numero de caracteres
 
-// Função que chama o sistema para limpar a tela
+// Funï¿½ï¿½o que chama o sistema para limpar a tela
 void clearScreen() {
     system(CLEAR_CMD);
 }
@@ -43,6 +43,106 @@ void funcaoPopUp() {
     return;
 }
 
+void funcaoAdicionaTarefa()
+{
+    FILE *arquivo;
+    char texto[MAX_CHAR];
+    char linha[100]; //quantidade de linhas que irao ser lidas/impressas em teste.txt
+
+    printf("Escreva a tarefa que voce deseja adicionar:\n");
+    fgets(texto, sizeof(texto), stdin);
+    fprintf(arquivo, "%s", texto);
+    return;
+}
+
+void funcaoListarTarefas()
+{
+    FILE *arquivo;
+    char texto[MAX_CHAR];
+    char linha[100]; //quantidade de linhas que irao ser lidas/impressas em teste.txt
+
+    printf("Listando tarefas disponiveis:\n");
+
+    while (fgets(linha, sizeof(linha), arquivo)) {
+        printf("* %s", linha);
+    }
+    return;
+}
+
+void funcaoBuscarTarefa()
+{
+    FILE *arquivo;
+    char chave[120];
+    int encontrado = 0;
+    char linha[100]; //quantidade de linhas que irao ser lidas/impressas em teste.txt
+
+    printf("Digite o registro que deseja buscar: ");
+    fgets(chave, sizeof(chave), stdin);
+
+    chave[strcspn(chave, "\n")] = '\0';
+
+    while (fgets(linha, sizeof(linha), arquivo)) {
+    if (strstr(linha, chave)) {
+        printf("Registro encontrado: %s", linha);
+        encontrado = 1;
+        break;
+        }
+    }
+
+    if(!encontrado)
+    {
+        printf("Registro nao encontrado.\n");
+    }
+    return;
+}
+
+void funcaoOrdenaTarefas()
+{
+    FILE *arquivo;
+    char texto[MAX_CHAR];
+    char linha[100]; //quantidade de linhas que irao ser lidas/impressas em teste.txt
+    int i = 1;
+
+    while (fgets(linha, sizeof(linha), arquivo))
+    {
+        printf("%d - %s", i, linha);
+        i++;
+    }
+
+    fgets(texto, sizeof(texto), stdin);
+    fprintf(arquivo, "%s", texto);
+
+    return;
+}
+
+void funcaoEditarTarefa()
+{
+    FILE *arquivo;
+    int opcaoTarefa;
+    char texto[MAX_CHAR];
+    char linha[100]; //quantidade de linhas que irao ser lidas/impressas em teste.txt
+
+    printf("Exibindo tarefas disponiveis:\n");
+    //funcao() <--local para reutilizar funcao para exibir tarefas registradas.
+
+    while (fgets(linha, sizeof(linha), arquivo))
+    {
+        //printf("%d - %s", i, linha);
+        printf("%s", linha);
+    }
+
+    fgets(texto, sizeof(texto), stdin);
+    fprintf(arquivo, "%s", texto);
+    printf("Selecione o numero de uma tarefa para realizar edicao:\n");
+    scanf("%d", &opcaoTarefa);
+    printf("A seguinte tarefa foi selecionada para edicao:"); //ver se da para adicionar uma condicional igual o popup Voce tem certeza? S ou N
+    return;
+}
+
+void funcaoExcluirTarefa()
+{
+    return;
+}
 int main()
 {
     FILE *arquivo;
@@ -54,8 +154,8 @@ int main()
     }
 
     int opcao, i = 1;
-    char texto[MAX_CHAR];
-    char linha[100]; //quantidade de linhas que irao ser lidas/impressas em teste.txt
+//    char texto[MAX_CHAR];
+//    char linha[100]; //quantidade de linhas que irao ser lidas/impressas em teste.txt
 
     while(opcao != 8){
 
@@ -71,6 +171,7 @@ int main()
     getchar();
     clearScreen(); //limpar tela
 
+    //rever funcoes
     switch (opcao) {
         case 1: //ADICIONAR
             arquivo = fopen("arquivos/teste.txt", "a");
@@ -80,10 +181,7 @@ int main()
             return 1;
             }
 
-            printf("Escreva a tarefa que voce deseja adicionar:\n");
-
-            fgets(texto, sizeof(texto), stdin);
-            fprintf(arquivo, "%s", texto);
+            funcaoAdicionaTarefa();
 
             funcaoPopUp(); //Exibe a tela: Voce tem certeza?Sim ou nao.
             fclose(arquivo);
@@ -100,11 +198,7 @@ int main()
             return 1;
             }
 
-            printf("Listando tarefas disponiveis:\n");
-
-            while (fgets(linha, sizeof(linha), arquivo)) {
-                printf("%s", linha);
-            }
+            funcaoListarTarefas();
 
             funcaoPopUp(); //Exibe a tela: Voce tem certeza?Sim ou nao.
             fclose(arquivo);
@@ -113,9 +207,6 @@ int main()
             clearScreen();
             break;
         case 3: //BUSCAR
-            char chave[120];
-            int encontrado = 0;
-
             arquivo = fopen("arquivos/teste.txt", "r");
 
             if (arquivo == NULL) {
@@ -123,23 +214,7 @@ int main()
                 return 1;
             }
 
-            printf("Digite o registro que deseja buscar: ");
-            fgets(chave, sizeof(chave), stdin);
-
-            chave[strcspn(chave, "\n")] = '\0';
-
-            while (fgets(linha, sizeof(linha), arquivo)) {
-                if (strstr(linha, chave)) {
-                    printf("Registro encontrado: %s", linha);
-                    encontrado = 1;
-                    break;
-                }
-            }
-
-            if(!encontrado)
-            {
-                printf("Registro nao encontrado.\n");
-            }
+            funcaoBuscarTarefa();
 
             funcaoPopUp(); //Exibe a tela: Voce tem certeza?Sim ou nao.
             fclose(arquivo);
@@ -149,22 +224,16 @@ int main()
             break;
 
         case 4: //ORDENAR
-            int i = 1;
             arquivo = fopen("arquivos/teste.txt", "r");
             printf("Ordenando as tarefas disponiveis:\n");
 
-            if (arquivo == NULL) {
-            printf("Erro ao abrir o arquivo!\n");
-            return 1;
+            if (arquivo == NULL)
+            {
+                printf("Erro ao abrir o arquivo!\n");
+                return 1;
             }
 
-            while (fgets(linha, sizeof(linha), arquivo)) {
-                printf("%d - %s", i, linha);
-                i++;
-            }
-
-            fgets(texto, sizeof(texto), stdin);
-            fprintf(arquivo, "%s", texto);
+            funcaoOrdenaTarefas();
 
             funcaoPopUp(); //Exibe a tela: Voce tem certeza?Sim ou nao.
             fclose(arquivo);
@@ -181,22 +250,9 @@ int main()
             return 1;
             }
 
-            printf("Exibindo tarefas disponiveis:\n");
-            //funcao() <--local para reutilizar funcao para exibir tarefas registradas.
+            funcaoEditarTarefa();
 
-            while (fgets(linha, sizeof(linha), arquivo))
-            {
-            //printf("%d - %s", i, linha);
-            printf("%s", linha);
-            }
-
-            fgets(texto, sizeof(texto), stdin);
-            fprintf(arquivo, "%s", texto);
-            printf("Selecione o numero de uma tarefa para realizar edicao:\n");
-            scanf("%d", &opcao);
-            printf("A seguinte tarefa foi selecionada para edicao:"); //ver se da para adicionar uma condicional igual o popup Voce tem certeza? S ou N
-
-            //printf(scanf("%c", &texto)); //deixar o texto placeholder da tarefa escolhida para editar na digitaçao
+            //printf(scanf("%c", &texto)); //deixar o texto placeholder da tarefa escolhida para editar na digitaï¿½ao
             funcaoPopUp(); //Exibe a tela: Voce tem certeza?Sim ou nao.
             fclose(arquivo);
 
@@ -219,12 +275,8 @@ int main()
             return 1;
             }
 
-            while (fgets(linha, sizeof(linha), arquivo)) {
-                printf("%s", linha);
-            }
-
-            fgets(texto, sizeof(texto), stdin);
-            fprintf(arquivo, "%s", texto);
+            funcaoListarTarefas();
+            funcaoExcluirTarefa();
 
             funcaoPopUp(); //Exibe a tela: Voce tem certeza?Sim ou nao.
             fclose(arquivo);
