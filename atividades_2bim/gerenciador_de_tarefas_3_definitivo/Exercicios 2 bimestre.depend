@@ -1,0 +1,29 @@
+# depslib dependency file v1.0
+1749597819 source:d:\01 pessoal\unibrasil\c prof marlos\exercicios 2 bimestre\funcoes.c
+	<stdio.h>
+	"estrutura.h"
+
+1748898742 d:\01 pessoal\unibrasil\c prof marlos\exercicios 2 bimestre\estrutura.h
+
+1749597964 source:d:\01 pessoal\unibrasil\c prof marlos\exercicios 2 bimestre\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<ctype.h>
+	"estrutura.h"
+
+1750429449 source:c:\users\marcelo silva\desktop\gerenciador_tarefas_ravel\funcoes.c
+	<stdio.h>
+	<string.h>
+	<ctype.h>
+	"estrutura.h"
+
+1750430723 c:\users\marcelo silva\desktop\gerenciador_tarefas_ravel\estrutura.h
+
+1750430553 source:c:\users\marcelo silva\desktop\gerenciador_tarefas_ravel\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<ctype.h>
+	"estrutura.h"
+
